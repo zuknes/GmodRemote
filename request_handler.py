@@ -13,7 +13,7 @@ class Serv(BaseHTTPRequestHandler):
         """Handle Get Requests"""
 
         client = self.client_address[0]
-        if not client in self.server.srvhandler.servers:
+        if client not in self.server.srvhandler.servers:
             response = "you fool"
             print("WARNING! Refused connection from " + client)
         else:
@@ -45,7 +45,7 @@ class Serv(BaseHTTPRequestHandler):
         """Handle POST Requests"""
 
         client = self.client_address[0]
-        if not client in self.server.srvhandler.servers:
+        if client not in self.server.srvhandler.servers:
             print("WARNING! Refused POST connection from " + client)
         else:
             content_length = int(self.headers['Content-Length'])
@@ -56,7 +56,7 @@ class Serv(BaseHTTPRequestHandler):
                     print(str(client) + " >> " + params['message'][0])
                 else:
                     print("Invalid postdata from " + str(client))
-            except:
+            except Exception:
                 print("Invalid postdata from " + str(client))
         self.send_response(200)
         self.end_headers()

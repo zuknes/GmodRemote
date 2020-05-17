@@ -31,7 +31,7 @@ class InputHandler():
             command = cmd[0]
             arg = cmd[1]
 
-        except:
+        except Exception:
             print("[1] No such command: " + originalInput)
             return
 
@@ -46,7 +46,7 @@ class InputHandler():
             print('Successful added ' + arg + ' to the list')
             return
         if command == "selectserver":
-            if not arg in self.srvhandler.servers:
+            if arg not in self.srvhandler.servers:
                 print("No such server found.")
                 return
             self.srvhandler.set_current_server(arg)
@@ -59,11 +59,12 @@ class InputHandler():
             if self.cmdhandler.commands[command]:
                 if self.srvhandler.get_current_server() == "nil":
                     print(
-                        "No server selected. Select a server by using selectserver [ip]")
+                        "No server selected. ",
+                        "Select a server by using selectserver [ip]")
                     return
                 self.cmdhandler.commands[command](command, originalInput)
                 return
-        except:
+        except Exception:
             print("[2] Wrong syntax: " + command)
 
     def read_input(self):

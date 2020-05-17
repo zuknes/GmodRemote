@@ -39,7 +39,7 @@ class ServerCommandHandler():
         tosend = arg_input[len(arg_command) + 1:]
         try:
             file_container = open('./includes/' + tosend + '.lua', 'r').read()
-        except:
+        except Exception:
             print("Error opening file: " + tosend + '.lua')
             return
         self.queue_command(self.srvhandler.get_current_server(),
